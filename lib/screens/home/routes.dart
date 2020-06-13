@@ -21,7 +21,7 @@ class _RoutesPageState extends State<RoutesPage> {
         child: Column(
           children: <Widget>[
             Image(
-              image: AssetImage('assets/logo.png'),
+              image: AssetImage('assets/images/logo.png'),
               width: 200,
             ),
             Divider(height: 40,color: Colors.white),

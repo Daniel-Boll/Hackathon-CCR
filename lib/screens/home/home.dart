@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackathon_ccr/screens/home/profile.dart';
+import 'package:hackathon_ccr/screens/home/review.dart';
 import 'package:hackathon_ccr/screens/home/routes.dart';
 
 class Home extends StatefulWidget {
@@ -14,6 +15,7 @@ class _HomeState extends State<Home> {
 
   // Create page widgets
   final ProfilePage profileWidget = ProfilePage();
+  final ReviewPage reviewWidget = ReviewPage();
   final RoutesPage routesWidget = RoutesPage();
 
   Widget _showPage = new RoutesPage();
@@ -22,6 +24,9 @@ class _HomeState extends State<Home> {
     switch(page){
       case 0:
         return routesWidget;
+        break;
+      case 1:
+        return reviewWidget;
         break;
       case 2:
         return profileWidget;
