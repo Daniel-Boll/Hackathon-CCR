@@ -165,15 +165,20 @@ class _CreateAccountState extends State<CreateAccount> {
             
                         onPressed: () async {
                           if(_formKey.currentState.validate()){
-                            // setState(() => loading = true);
+                            setState(() => loading = true);
 
-                            // dynamic result = await _auth.registerWithEmailAndPassword(_currentEmail, _currentPassword);
-                            // if(result == null){
-                            //   setState(() {
-                            //     loading = true;
-                            //     error = 'Por favor, informe um e-mail válido';
-                            //   });
-                            // }
+                            dynamic result = await _auth.registerWithEmailAndPassword(
+                              _currentEmail, _currentPassword,
+                              _currentName, _currentPhone,
+                              _currentPlaca, _currentCPF, _currentANTT
+                            );
+                            
+                            if(result == null){
+                              setState(() {
+                                loading = true;
+                                error = 'Por favor, informe um e-mail válido';
+                              });
+                            }
                         }
                       },
 
