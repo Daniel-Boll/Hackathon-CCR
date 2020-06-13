@@ -14,9 +14,6 @@ String _origin;
 String _destiny;
 
 class _RoutesPageState extends State<RoutesPage> {
-
-  final AuthService _auth = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,18 +74,6 @@ class _RoutesPageState extends State<RoutesPage> {
                           print(_origin);
                           print(_destiny);
                         }
-                      }
-                    ),
-                  ),
-                  Center(
-                    child: RaisedButton(
-                      color: Colors.red[700],
-                      child: Text(
-                        'Loggout',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () async {
-                        await _auth.signOut();
                       }
                     ),
                   ),

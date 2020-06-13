@@ -28,7 +28,7 @@ class _LoginFormState extends State<LoginForm>{
       style: TextStyle(color: Color(0xFFbdc6cf)),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
-        hintText: "E-mail/Telefone",
+        hintText: "E-mail",
         border: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
         ),
@@ -46,6 +46,7 @@ class _LoginFormState extends State<LoginForm>{
         filled: true,
         fillColor: Colors.white,
       ),
+      onChanged: (val) => setState(() => password = val),
     );
 
     final loginButon = Material(
@@ -60,7 +61,16 @@ class _LoginFormState extends State<LoginForm>{
           if(_formKey.currentState.validate()){
             setState(() => loading = true);
             
-            // dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+            print(email);
+            print(password);  
+
+            dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+            if(result == null) {
+              setState(() {
+                error = 'Could not sign in with those credential!';
+                loading = false;
+              });
+            }
           }
         },
 

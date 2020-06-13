@@ -13,11 +13,15 @@ class DatabaseService {
   // Collection reference
   final CollectionReference userCollection = Firestore.instance.collection('users');
 
-  Future updateUserData(String name, String antt, String password) async {
+  Future updateUserData(String name, String phone, String email, String password, String placa, String cpf, String antt) async {
     return await userCollection.document(uid).setData({
       'name': name,
-      'antt': antt,
-      'password': password
+      'phone': phone,
+      'email': email,
+      'password': password,
+      'placa': placa,
+      'cpf': cpf, 
+      'antt': antt
     });
   }
 
@@ -41,6 +45,12 @@ class DatabaseService {
       password: snapshot.data['password']
     );
   }
+
+  // Get brews stream
+  // Stream<UserInfo> get infoA{
+  //   return userCollection.snapshots()
+  //     .map(_userInfoListFromSnapshot);
+  // }
 
   // Get brews stream
   Stream<List<UserInfo>> get info{
