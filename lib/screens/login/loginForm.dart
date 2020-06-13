@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../createAccount/createAccount.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _LoginFormState extends State<LoginForm>{
       obscureText: true,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
-        hintText: "E-mail/Telefone",
+        hintText: "Senha",
         filled: true,
         fillColor: Colors.white,
       ),
@@ -39,7 +39,7 @@ class _LoginFormState extends State<LoginForm>{
       borderRadius: BorderRadius.circular(30.0),
       color: Color(0xff01A0C7),
       child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width-20,
+        minWidth: double.infinity,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
 
         onPressed: () {},
@@ -56,10 +56,16 @@ class _LoginFormState extends State<LoginForm>{
       borderRadius: BorderRadius.circular(30.0),
       color: Color(0xff01A0C7),
       child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width-30,
+        height: 14.0,
+        minWidth: double.infinity,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
 
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateAccount()),
+          );
+        },
 
         child: Text("Criar conta",
             textAlign: TextAlign.center,
@@ -88,7 +94,7 @@ class _LoginFormState extends State<LoginForm>{
                 ),
                 SizedBox(height: 45.0),
                 phoneField,
-                SizedBox(height: 25.0),
+                SizedBox(height: 10.0),
                 passField,
                 SizedBox(
                   height: 35.0,
