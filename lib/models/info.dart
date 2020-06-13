@@ -1,11 +1,13 @@
 class UserInfo {
 
   final String name;
+  final String password;
   final String antt;
 
   UserInfo({
     this.name,
-    this.antt, password,
+    this.password,
+    this.antt,
   });
 
 }

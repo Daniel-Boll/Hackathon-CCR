@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../createAccount/createAccount.dart';
+import 'package:hackathon_ccr/screens/login/createAccount.dart';
+import 'package:hackathon_ccr/services/auth.dart';
+import 'package:hackathon_ccr/shared/loading.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -8,9 +10,20 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm>{
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
+  // Authentication variables needed
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+
+  bool loading = false;
+
+  // Text field states
+  String email = '';
+  String password = '';
+  String error = '';
+
   @override
   Widget build(BuildContext context){
-    final phoneField = TextField(
+    final emailField = TextField(
       obscureText: false,
       style: TextStyle(color: Color(0xFFbdc6cf)),
       decoration: InputDecoration(
@@ -22,6 +35,7 @@ class _LoginFormState extends State<LoginForm>{
         filled: true,
         fillColor: Colors.white,
       ),
+      onChanged: (val) => setState(() => email = val),
     );
 
     final passField = TextField(
@@ -42,7 +56,13 @@ class _LoginFormState extends State<LoginForm>{
         minWidth: double.infinity,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
 
-        onPressed: () {},
+        onPressed: () async {
+          if(_formKey.currentState.validate()){
+            setState(() => loading = true);
+            
+            // dynamic result = await _auth.signInWithEmailAndPassword(email, password);
+          }
+        },
 
         child: Text("Login",
             textAlign: TextAlign.center,
@@ -74,37 +94,40 @@ class _LoginFormState extends State<LoginForm>{
       ),
     );
 
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
         child: Container(
           color: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.all(36.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 155.0,
-                  child: Image.asset(
-                    "assets/images/logo.png",
-                    fit: BoxFit.contain,
+            child: Form(
+                key: _formKey,
+                child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 155.0,
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                ),
-                SizedBox(height: 45.0),
-                phoneField,
-                SizedBox(height: 10.0),
-                passField,
-                SizedBox(
-                  height: 35.0,
-                ),
-                loginButon,
-                SizedBox(
-                  height: 15.0,
-                ),
-                createAccountBtn
-              ],
+                  SizedBox(height: 45.0),
+                  emailField,
+                  SizedBox(height: 10.0),
+                  passField,
+                  SizedBox(
+                    height: 35.0,
+                  ),
+                  loginButon,
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  createAccountBtn
+                ],
+              ),
             ),
           ),
         ),

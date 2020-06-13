@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'loginForm.dart';
+import 'package:hackathon_ccr/screens/login/loginForm.dart';
 
 class Login extends StatelessWidget {
   @override
