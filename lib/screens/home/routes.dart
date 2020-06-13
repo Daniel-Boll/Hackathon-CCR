@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_ccr/shared/constants.dart';
+import '../viewRoute/viewRoute.dart';
 
 class RoutesPage extends StatefulWidget {
   @override
@@ -11,11 +12,12 @@ final _formKey = GlobalKey<FormState>();
 // Form values
 String _origin;
 String _destiny;
+bool on_route = false;
 
 class _RoutesPageState extends State<RoutesPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return !on_route? Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
@@ -72,6 +74,9 @@ class _RoutesPageState extends State<RoutesPage> {
                         if(_formKey.currentState.validate()){
                           print(_origin);
                           print(_destiny);
+                          setState(() {
+                            on_route = true;
+                          });
                         }
                       }
                     ),
@@ -82,6 +87,7 @@ class _RoutesPageState extends State<RoutesPage> {
           ],
         ),
       ),
-    );
+    ) : 
+    ViewRoute();
   }
 }

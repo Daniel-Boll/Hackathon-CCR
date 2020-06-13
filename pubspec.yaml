@@ -34,7 +34,8 @@ dependencies:
   flutter_spinkit: "^4.1.2"
   curved_navigation_bar: ^0.3.2
   smooth_star_rating: ^1.1.1
-
+  flutter_map: any
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -51,7 +52,6 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  curved_navigation_bar: ^0.3.2
   assets:
       - assets/
       - assets/images/

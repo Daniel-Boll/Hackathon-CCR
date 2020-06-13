@@ -61,16 +61,18 @@ class _HomeState extends State<Home> {
                 });
             },
           ),
-          body: Container(
-              color: Colors.blueAccent,
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    _showPage
-                  ],
+          body: SingleChildScrollView(
+            child: Container(
+                color: Colors.blueAccent,
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      _showPage
+                    ],
+                  ),
                 ),
-              ),
-          ),
+            ),
+          )
         ),
       );
     }
