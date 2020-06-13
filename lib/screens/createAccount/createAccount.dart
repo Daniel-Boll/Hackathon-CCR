@@ -65,56 +65,57 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 155.0,
-                  child: Image.asset(
-                    "assets/images/logo.png",
-                    fit: BoxFit.contain,
-                  ),
+    return Scaffold(
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 20.0),
+          child: SingleChildScrollView(
+            child:Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 155.0,
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  fit: BoxFit.contain,
                 ),
-                SizedBox(height: 45.0),
-                nameField,
-                SizedBox(height: 45.0),
-                phoneField,
-                SizedBox(height: 45.0),
-                mailField,
-                SizedBox(height: 45.0),
-                placaField,
-                SizedBox(height: 45.0),
-                cpfField,
-                SizedBox(height: 45.0),anttField,
-                Material(
-                  elevation: 5.0,
-                  borderRadius: BorderRadius.circular(30.0),
-                  color: Color(0xff01A0C7),
-                  child: MaterialButton(
-                    height: 14.0,
-                    minWidth: double.infinity,
-                    padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+              ),
+              SizedBox(height:20.0),
+              nameField,
+              SizedBox(height: 10.0),
+              phoneField,
+              SizedBox(height: 10.0),
+              mailField,
+              SizedBox(height: 10.0),
+              placaField,
+              SizedBox(height: 10.0),
+              cpfField,
+              SizedBox(height: 10.0),
+              anttField,
+              SizedBox(height: 20.0),
+              Material(
+                elevation: 5.0,
+                borderRadius: BorderRadius.circular(30.0),
+                color: Color(0xff01A0C7),
+                child: MaterialButton(
+                  height: 14.0,
+                  minWidth: double.infinity,
+                  padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
 
-                    onPressed: () {},
+                  onPressed: () {},
 
-                    child: Text("Cadastrar",
-                        textAlign: TextAlign.center,
+                  child: Text("Cadastrar",
+                      textAlign: TextAlign.center,
                   ),
-                );
-
-              
-              
-              
-              ]
-          ),
+                )
+              ),
+              SizedBox(height: 20.0)
+            ]
+          )
+          )
         )
-      ,),
+      )
     );
   }
 }

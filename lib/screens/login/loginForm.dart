@@ -65,7 +65,6 @@ class _LoginFormState extends State<LoginForm>{
             context,
             MaterialPageRoute(builder: (context) => CreateAccount()),
           );
-
         },
 
         child: Text("Criar conta",
