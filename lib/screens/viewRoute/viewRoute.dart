@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ViewRoute extends StatefulWidget {
   @override
@@ -10,19 +9,25 @@ class ViewRoute extends StatefulWidget {
 
 class ViewRouteState extends State<ViewRoute>{
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
   
   @override
   Widget build(BuildContext context) {
-    return new FlutterMap(
-      options: new MapOptions(
-        center: new LatLng(51.5, -0.09),
-        zoom: 13.0,
-      ),
-      layers: [
-        new TileLayerOptions(
-          urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    return new SizedBox(
+      height: 155.0,
+      child: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _center,
+          zoom: 11.0,
         ),
-      ],
+      ),
     );
   }
 }
