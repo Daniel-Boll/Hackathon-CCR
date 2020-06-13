@@ -18,7 +18,7 @@ bool on_route = false;
 class _RoutesPageState extends State<RoutesPage> {
   @override
   Widget build(BuildContext context) {
-    return !on_route? Container(
+    return !on_route ? Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(

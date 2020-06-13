@@ -72,6 +72,7 @@ class _HomeState extends State<Home> {
           ),
           body: SingleChildScrollView(
             child: Container(
+                height: MediaQuery.of(context).size.height,
                 color: Colors.blueAccent,
                 child: Center(
                   child: Column(
