@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "589883580852",
+    "firebase_url": "https://hackathon-ccr-b822b.firebaseio.com",
+    "project_id": "hackathon-ccr-b822b",
+    "storage_bucket": "hackathon-ccr-b822b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589883580852:android:26e588191ad5df537252e1",
+        "android_client_info": {
+          "package_name": "com.mienaikatto.hackathon_ccr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589883580852-nnrk73hms97g4bqsq5r5ov6k3k1n6eo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWmmH6Sn2vyFWX2G4hV0r-iOnnPEbLEpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589883580852-nnrk73hms97g4bqsq5r5ov6k3k1n6eo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
