@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:hackathon_ccr/models/user.dart';
 import 'package:hackathon_ccr/screens/home/profile.dart';
 import 'package:hackathon_ccr/screens/home/review.dart';
 import 'package:hackathon_ccr/screens/home/routes.dart';
+import 'package:hackathon_ccr/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override

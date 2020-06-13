@@ -43,7 +43,7 @@ class DatabaseService {
   }
 
   // Get brews stream
-  Stream<List<UserInfo>> get brews{
+  Stream<List<UserInfo>> get info{
     return userCollection.snapshots()
       .map(_userInfoListFromSnapshot);
   }
