@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:hackathon_ccr/models/facility.dart';
 import 'package:hackathon_ccr/services/auth.dart';
+import 'package:hackathon_ccr/services/databaseFacility.dart';
 import 'package:hackathon_ccr/shared/constants.dart';
 import '../viewRoute/viewRoute.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -122,6 +126,44 @@ class _RoutesPageState extends State<RoutesPage> {
                           setState(() {
                             on_route = true;
                           });
+                        }
+                      }
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Center(
+                    child: RaisedButton(
+                      color: Colors.red[700],
+                      child: Text(
+                        'Popular Banco',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        double rate = 3.0;
+
+                        var allThreeRate = {
+                          'bathroomRate': rate,  
+                          'courtyardRate': rate,
+                          'securityRate': rate,
+                          'dieselRate': rate,
+                          'treatmentRate': rate
+                        };
+
+                        var review = { 
+                          'reviewerName': 'Nome',
+                          'reviewerRate': 3,
+                          'reviewerDescription': 'Muito podre',
+                          'reviewerSpecificRate': allThreeRate
+                        }; 
+
+                        String rand = new Random().nextInt((10000000)+100000).toString();
+                        DatabaseFacilityService(uid: rand);
+
+                        dynamic result = await DatabaseFacilityService(uid: rand).updateFacilityData('lat', 'lng', 'name', 3, allThreeRate, review);
+
+                        if(result != null){
+                          print(result.uid);
+                          DatabaseFacilityService(uid: result.uid);
                         }
                       }
                     ),

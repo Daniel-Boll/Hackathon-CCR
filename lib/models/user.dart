@@ -16,6 +16,7 @@ class UserData {
   final String placa;
   final String cpf;
   final String antt;
+  final String trucoin;
 
   UserData({ 
     this.uid,
@@ -25,7 +26,8 @@ class UserData {
     this.password,
     this.placa,
     this.cpf,
-    this.antt
+    this.antt,
+    this.trucoin
   });
 
 }

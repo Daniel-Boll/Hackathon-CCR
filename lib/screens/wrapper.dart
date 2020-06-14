@@ -1,3 +1,4 @@
+import 'package:hackathon_ccr/models/facility.dart';
 import 'package:hackathon_ccr/models/user.dart';
 import 'package:hackathon_ccr/screens/login/authenticate.dart';
 import 'package:hackathon_ccr/screens/home/home.dart';
@@ -10,6 +11,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final user = (Provider.of<User>(context));
+    final facilities = (Provider.of<Facility>(context));
 
     // Return either home or Authenticate widget
     // return (user == null) ? Home() : Login();

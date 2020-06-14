@@ -28,21 +28,32 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Center(
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage('https://i.pinimg.com/564x/bc/f2/e0/bcf2e09c51f24a9cbf4bce267e4070ee.jpg'),
+                    radius: 70,
+                  ),
+                ),
+                Divider(
+                  height: 50,
+                  color: Colors.white,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Center(
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage('https://i.pinimg.com/564x/bc/f2/e0/bcf2e09c51f24a9cbf4bce267e4070ee.jpg'),
-                        radius: 70,
-                      ),
+                    Text(
+                      'NOME',
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 2,
+                      )
                     ),
                     Container(
                       child: Column(
                         children: <Widget>[
                           Icon(
                             Icons.local_shipping,
-                            color: Colors.yellow,
+                            color: Colors.white,
                             size: 40, 
                           ),
                           Text(
@@ -56,17 +67,6 @@ class ProfilePage extends StatelessWidget {
                       )
                     ),
                   ],
-                ),
-                Divider(
-                  height: 90,
-                  color: Colors.white,
-                ),
-                Text(
-                  'NOME',
-                  style: TextStyle(
-                    color: Colors.white,
-                    letterSpacing: 2,
-                  )
                 ),
                 Divider(
                   color: Colors.white,
@@ -109,7 +109,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 Text(
-                    'PASSWORD',
+                    'SENHA',
                     style: TextStyle(
                       color: Colors.white,
                       letterSpacing: 2,
@@ -131,17 +131,16 @@ class ProfilePage extends StatelessWidget {
                     )
                 ),
                 SizedBox(height: 30),
-                Center(
-                  child: RaisedButton(
-                    color: Colors.red[700],
-                    child: Text(
-                      'Loggout',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () async {
-                      await _auth.signOut();
-                    }
+                RaisedButton.icon(
+                  icon: Icon(Icons.exit_to_app, color: Colors.white,),
+                  color: Colors.red[700],
+                  label: Text(
+                    'Sair',
+                    style: TextStyle(color: Colors.white),
                   ),
+                  onPressed: () async {
+                    await _auth.signOut();
+                  }
                 ),
               ],
             ),
