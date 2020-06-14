@@ -25,7 +25,7 @@ class _LoginFormState extends State<LoginForm>{
   Widget build(BuildContext context){
     final emailField = TextField(
       obscureText: false,
-      style: TextStyle(color: Color(0xFFbdc6cf)),
+      style: TextStyle(color: Colors.black),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 20.0),
         hintText: "E-mail",

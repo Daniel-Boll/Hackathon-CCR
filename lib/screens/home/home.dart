@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackathon_ccr/models/info.dart';
-import 'package:hackathon_ccr/models/user.dart';
 import 'package:hackathon_ccr/screens/home/profile.dart';
 import 'package:hackathon_ccr/screens/home/review.dart';
 import 'package:hackathon_ccr/screens/home/routes.dart';
-import 'package:hackathon_ccr/services/auth.dart';
-import 'package:hackathon_ccr/services/database.dart';
+import 'package:hackathon_ccr/services/databaseFacility.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -50,40 +48,37 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
-    
-  //final user = Provider.of<UserInfo>(context) ?? [];
-
-    return SafeArea(
-        child: Scaffold(
-          bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: Colors.blueAccent,
-            // buttonBackgroundColor: Colors.greenAccent,
-            items: <Widget>[
-              Icon(Icons.map, size: 30),
-              Icon(Icons.rate_review, size: 30),
-              Icon(Icons.person, size: 30),
-            ],
-            onTap: (index) {
-              setState(() {
-                  _showPage = _pageChooser(index);
-                });
-            },
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-                height: MediaQuery.of(context).size.height,
-                color: Colors.blueAccent,
-                child: Center(
-                  child: Column(
-                    children: <Widget>[
-                      _showPage
-                    ],
-                  ),
-                ),
+    return StreamProvider<List<FacilityInfo>>.value(
+      value: DatabaseFacilityService().info,
+      child: Scaffold(
+        bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.blueAccent,
+        // buttonBackgroundColor: Colors.greenAccent,
+        items: <Widget>[
+          Icon(Icons.map, size: 30),
+          Icon(Icons.rate_review, size: 30),
+          Icon(Icons.person, size: 30),
+        ],
+        onTap: (index) {
+          setState(() {
+              _showPage = _pageChooser(index);
+            });
+        },
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            color: Colors.blueAccent,
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  _showPage
+                ],
+              ),
             ),
-          )
         ),
+      )
+        )
     );
-    }
+  }
 }

@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_ccr/models/facility.dart';
+import 'package:hackathon_ccr/models/info.dart';
 import 'package:hackathon_ccr/screens/home/reviewCard.dart';
-import 'package:hackathon_ccr/shared/constants.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:provider/provider.dart';
 
 class ReviewPage extends StatefulWidget {
   @override
@@ -9,62 +11,44 @@ class ReviewPage extends StatefulWidget {
 }
 
 class _ReviewPageState extends State<ReviewPage> {
+
+  List<String> list = new List<String>();
+
+  Future getTextWidgets() async{
+    QuerySnapshot querySnapshot = await Firestore.instance.collection("facility").getDocuments();
+    for (int i = 0; i < querySnapshot.documents.length; i++) {
+      var a = querySnapshot.documents[i];
+        list.add( a.documentID);
+    }
+    for(String a in list){
+      print('Before: '+a);
+    } 
+  }
+
   @override
   Widget build(BuildContext context) {
+    getTextWidgets();      
     return Container(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
-        child: Column(
-          children: <Widget>[
-            ReviewCard(
-              placeName: 'Posto do seu zé',
-              currentRating: 4.5,
-              imageURL: 'https://i.pinimg.com/564x/b0/69/42/b06942586d6a03d7147a64f05629badf.jpg',
-            ),
-          ],
-        ),        
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          for(String uid in list) ReviewCard(uid: uid)
+        ],
       ),
     );
-  }
-}
-
-typedef void RatingChangeCallback(double rating);
-
-class StarRating extends StatelessWidget {
-  final int starCount;
-  final double rating;
-  final RatingChangeCallback onRatingChanged;
-  final Color color;
-
-  StarRating({this.starCount = 5, this.rating = .0, this.onRatingChanged, this.color});
-
-  Widget buildStar(BuildContext context, int index) {
-    Icon icon;
-    if (index >= rating) {
-      icon = new Icon(
-        Icons.star_border,
-        color: Theme.of(context).buttonColor,
-      );
-    }
-    else if (index > rating - 1 && index < rating) {
-      icon = new Icon(
-        Icons.star_half,
-        color: color ?? Theme.of(context).primaryColor,
-      );
-    } else {
-      icon = new Icon(
-        Icons.star,
-        color: color ?? Theme.of(context).primaryColor,
-      );
-    }
-    return new InkResponse(
-      onTap: onRatingChanged == null ? null : () => onRatingChanged(index + 1.0),
-      child: icon,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Row(children: new List.generate(starCount, (index) => buildStar(context, index)));
+    // return Container(
+    //   child: Padding(
+    //     padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
+    //     child: Column(
+    //       children: <Widget>[
+    //         ReviewCard(
+    //           placeName: 'Posto do seu zé',
+    //           currentRating: 4.5,
+    //           imageURL: 'https://i.pinimg.com/564x/b0/69/42/b06942586d6a03d7147a64f05629badf.jpg',
+    //         ),
+    //       ],
+    //     ),        
+    //   ),
+    // );
   }
 }

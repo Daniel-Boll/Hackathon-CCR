@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hackathon_ccr/models/facility.dart';
 
 import 'package:hackathon_ccr/models/user.dart';
 import 'package:hackathon_ccr/services/database.dart';
@@ -12,10 +13,19 @@ class AuthService {
     return (user != null) ? User(uid: user.uid) : null;
   }
 
+  Facility _facilityFirebaseUser(FirebaseUser facility){
+    return (facility != null) ? Facility(uid: facility.uid) : null;
+  }
+
   // Auth change user stream
   Stream<User> get user{
     return _auth.onAuthStateChanged
       .map(_userFromFirebaseUser);
+  }
+
+  Stream<Facility> get facility{
+    return _auth.onAuthStateChanged
+      .map(_facilityFirebaseUser);
   }
 
   // Sign in anon
@@ -55,7 +65,8 @@ class AuthService {
         password,
         placa,
         cpf,
-        antt
+        antt,
+        10
       );
       return _userFromFirebaseUser(user);   
     }catch(e){
@@ -73,5 +84,4 @@ class AuthService {
       return null;
     }
   }
-
 }
