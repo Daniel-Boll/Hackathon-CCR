@@ -69,22 +69,19 @@ class _RoutesPageState extends State<RoutesPage> {
   void initState(){
     super.initState();
   }
-    PolylinePoints polylinePoints = PolylinePoints();
+
   _getPolyline() async {
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       googleAPIKey,
       PointLatLng(OrigemCo.latitude, OrigemCo.longitude),
-      PointLatLng(DestinoCo.latitude, DestinoCo.longitude),
+      PointLatLng(DestinoCo.latitude, _destLongitude),
       travelMode: TravelMode.driving,
-      wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
-    );
-    print(result.points);
-  }
+    wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
+  );
 
 
   @override
   Widget build(BuildContext context) {
-    _getPolyline();
     return !on_route ? Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -226,6 +223,36 @@ class _RoutesPageState extends State<RoutesPage> {
                     new Container(
                       key: Key('blue'),
                       child: Icon(Icons.location_on,color: Colors.red,size: 30.0,),
+                    ),
+                  ),
+                  new Marker(
+                    width: 40.0,
+                    height: 40.0,
+                    point: new LatLng(-24.72297, -48.04664),
+                    builder: (ctx) =>
+                    new Container(
+                      key: Key('blue'),
+                      child: Icon(Icons.location_on,color: Colors.purpleAccent,size: 30.0,),
+                    ),
+                  ),
+                  new Marker(
+                    width: 40.0,
+                    height: 40.0,
+                    point: new LatLng(-20.61594, -44.73586),
+                    builder: (ctx) =>
+                    new Container(
+                      key: Key('blue'),
+                      child: Icon(Icons.location_on,color: Colors.purpleAccent,size: 30.0,),
+                    ),
+                  ),
+                  new Marker(
+                    width: 40.0,
+                    height: 40.0,
+                    point: new LatLng(-13.72115, -40.0963),
+                    builder: (ctx) =>
+                    new Container(
+                      key: Key('blue'),
+                      child: Icon(Icons.location_on,color: Colors.purpleAccent,size: 30.0,),
                     ),
                   ),
                 ],
