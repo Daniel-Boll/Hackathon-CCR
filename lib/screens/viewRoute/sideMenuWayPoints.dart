@@ -162,7 +162,7 @@ class NavDrawer extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 50),
                 Text(
-                  'Parada 1',
+                  'Parada 3',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 26,

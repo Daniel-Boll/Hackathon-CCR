@@ -34,7 +34,7 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   smooth_star_rating: ^1.1.1
   flutter_map: any
-
+  flutter_polyline_points: ^0.2.2
 
 dev_dependencies:
   flutter_test:

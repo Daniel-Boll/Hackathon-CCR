@@ -8,6 +8,7 @@ import 'package:hackathon_ccr/shared/constants.dart';
 import '../viewRoute/viewRoute.dart';
 import 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_map/src/geo/latlng_bounds.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -32,6 +33,8 @@ export 'package:flutter_map/src/layer/tile_provider/tile_provider.dart';
 export 'package:flutter_map/src/layer/tile_provider/mbtiles_image_provider.dart';
 export 'package:flutter_map/src/plugins/plugin.dart';
 
+import 'package:hackathon_ccr/screens/costCalc/costCalc.dart';
+
 class RoutesPage extends StatefulWidget {
   @override
   _RoutesPageState createState() => _RoutesPageState();
@@ -53,7 +56,7 @@ const double CAMERA_BEARING = 30;
 
 
 class _RoutesPageState extends State<RoutesPage> {
-  
+
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   final LatLng _center =  LatLng(45.521563, -122.677433);  
   Set<Marker> _markers = {};
@@ -66,10 +69,22 @@ class _RoutesPageState extends State<RoutesPage> {
   void initState(){
     super.initState();
   }
+    PolylinePoints polylinePoints = PolylinePoints();
+  _getPolyline() async {
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      googleAPIKey,
+      PointLatLng(OrigemCo.latitude, OrigemCo.longitude),
+      PointLatLng(DestinoCo.latitude, DestinoCo.longitude),
+      travelMode: TravelMode.driving,
+      wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
+    );
+    print(result.points);
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    _getPolyline();
     return !on_route ? Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -182,23 +197,35 @@ class _RoutesPageState extends State<RoutesPage> {
           height: MediaQuery.of(context).size.height-110,
           child: FlutterMap(
             options: new MapOptions(
-              center: new LatLng(51.5, -0.09),
-              zoom: 13.0,
+              center: new LatLng(-18.86239, -44.38886),
+              zoom: 5.0,
             ),
             layers: [
               new TileLayerOptions(
                 urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 subdomains: ['a', 'b', 'c']
               ),
+
               new MarkerLayerOptions(
                 markers: [
                   new Marker(
-                    width: 80.0,
-                    height: 80.0,
-                    point: new LatLng(51.5, -0.09),
+                    width: 40.0,
+                    height: 40.0,
+                    point: new LatLng(-25.431015, -49.270167),
                     builder: (ctx) =>
                     new Container(
-                      child: new FlutterLogo(),
+                      key: Key('blue'),
+                      child: Icon(Icons.location_on,color: Colors.green,size: 30.0,),
+                    ),
+                  ),
+                  new Marker(
+                    width: 40.0,
+                    height: 40.0,
+                    point: new LatLng(-12.979161, -38.500039),
+                    builder: (ctx) =>
+                    new Container(
+                      key: Key('blue'),
+                      child: Icon(Icons.location_on,color: Colors.red,size: 30.0,),
                     ),
                   ),
                 ],
@@ -217,16 +244,17 @@ class _RoutesPageState extends State<RoutesPage> {
               children: <Widget>[
                 SizedBox(width: 25.0),
                 FlatButton(
-                  child: Text("445km"),
+                  child: Text("2.200 km"),
                   onPressed: () => {
                     print("ajdgjawkdhawkld")
                   },
                 ),
                 VerticalDivider(),
                 FlatButton(
-                  child: Text("R\$ 256,00"),
+                  child: Text("R\$ 791,00"),
                   onPressed: () => {
-                    print("ajdgjawkdhawkld")
+                    //////////////////////////////////////qq
+                    showAlertDialog2(context)
                   },
                 ),
                 VerticalDivider(),
