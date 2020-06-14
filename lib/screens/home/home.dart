@@ -52,6 +52,7 @@ class _HomeState extends State<Home> {
     return StreamProvider<List<FacilityInfo>>.value(
       value: DatabaseFacilityService().info,
       child: Scaffold(
+        drawer: NavDrawer(),
         bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.blueAccent,
         // buttonBackgroundColor: Colors.greenAccent,
@@ -66,20 +67,18 @@ class _HomeState extends State<Home> {
             });
         },
       ),
-      body: SingleChildScrollView(
-        child: Container(
-            height: MediaQuery.of(context).size.height,
-            color: Colors.blueAccent,
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  _showPage
-                ],
-              ),
+      body: Container(
+          height: MediaQuery.of(context).size.height,
+          color: Colors.blueAccent,
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                _showPage
+              ],
             ),
+          ),
         ),
       )
-        )
     );
   }
 }
