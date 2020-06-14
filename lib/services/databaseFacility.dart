@@ -21,7 +21,7 @@ class DatabaseFacilityService {
     String name,
     double generalRate,
     Map generalSpecificRate,
-    Map reviewData
+    List<Map> reviewData
   ) async {
     return await facilityCollection.document(uid).setData({
       'lat': lat,

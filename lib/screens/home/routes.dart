@@ -77,7 +77,7 @@ class _RoutesPageState extends State<RoutesPage> {
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
           children: <Widget>[
-            
+            // Image(image: AssetImage('/assets/image/logo.png')),
             Form(
               key: _formKey,
               child: Column(
@@ -133,7 +133,7 @@ class _RoutesPageState extends State<RoutesPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Center(
+                  /*Center(
                     child: RaisedButton(
                       color: Colors.red[700],
                       child: Text(
@@ -151,12 +151,21 @@ class _RoutesPageState extends State<RoutesPage> {
                           'treatmentRate': rate
                         };
 
-                        var review = { 
-                          'reviewerName': 'Nome',
+                        var review = [{ 
+                          'uid' : '9RWdLak3K2dFjHHqvvwxh7uHIMF3',
+                          'reviewerName': 'Joaquim Neves',
                           'reviewerRate': 3,
-                          'reviewerDescription': 'Muito podre',
+                          'reviewerDescription': 'Bom estabelimento blá blá blá',
                           'reviewerSpecificRate': allThreeRate
-                        }; 
+                        },{
+                          'uid' : 'DTON1tjpJqObEWXxmOfLQ8nKemm1',
+                          'reviewerName': 'Pedro Carlos',
+                          'reviewerRate': 4,
+                          'reviewerDescription': 'Ótimo estabelicimento blá blá blá',
+                          'reviewerSpecificRate': allThreeRate
+                        }
+                        
+                        ]; 
 
                         String rand = new Random().nextInt((10000000)+100000).toString();
                         DatabaseFacilityService(uid: rand);
@@ -169,7 +178,7 @@ class _RoutesPageState extends State<RoutesPage> {
                         }
                       }
                     ),
-                  ),
+                  ),*/
                 ],
               ),
             ),

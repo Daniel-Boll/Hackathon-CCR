@@ -20,35 +20,21 @@ class _ReviewPageState extends State<ReviewPage> {
       var a = querySnapshot.documents[i];
         list.add( a.documentID);
     }
-    for(String a in list){
-      //print('Before: '+a);
-    } 
   }
 
   @override
   Widget build(BuildContext context) {
     getTextWidgets();      
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ReviewCard(uid: list)
-        ],
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 6, 20, 0),
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ReviewCard(uid: list)
+          ],
+        ),
       ),
     );
-    // return Container(
-    //   child: Padding(
-    //     padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
-    //     child: Column(
-    //       children: <Widget>[
-    //         ReviewCard(
-    //           placeName: 'Posto do seu zé',
-    //           currentRating: 4.5,
-    //           imageURL: 'https://i.pinimg.com/564x/b0/69/42/b06942586d6a03d7147a64f05629badf.jpg',
-    //         ),
-    //       ],
-    //     ),        
-    //   ),
-    // );
   }
 }
