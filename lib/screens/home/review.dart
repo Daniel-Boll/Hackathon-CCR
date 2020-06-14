@@ -21,7 +21,7 @@ class _ReviewPageState extends State<ReviewPage> {
         list.add( a.documentID);
     }
     for(String a in list){
-      print('Before: '+a);
+      //print('Before: '+a);
     } 
   }
 
@@ -32,7 +32,7 @@ class _ReviewPageState extends State<ReviewPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          for(String uid in list) ReviewCard(uid: uid)
+          ReviewCard(uid: list)
         ],
       ),
     );
