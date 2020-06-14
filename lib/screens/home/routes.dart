@@ -70,16 +70,6 @@ class _RoutesPageState extends State<RoutesPage> {
     super.initState();
   }
 
-  _getPolyline() async {
-      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      googleAPIKey,
-      PointLatLng(OrigemCo.latitude, OrigemCo.longitude),
-      PointLatLng(DestinoCo.latitude, _destLongitude),
-      travelMode: TravelMode.driving,
-    wayPoints: [PolylineWayPoint(location: "Sabo, Yaba Lagos Nigeria")]
-  );
-
-
   @override
   Widget build(BuildContext context) {
     return !on_route ? Container(
