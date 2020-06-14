@@ -8,6 +8,7 @@ import 'package:hackathon_ccr/screens/home/routes.dart';
 import 'package:hackathon_ccr/services/auth.dart';
 import 'package:hackathon_ccr/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:hackathon_ccr/screens/viewRoute/sideMenuWayPoints.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -56,6 +57,7 @@ class _HomeState extends State<Home> {
 
     return SafeArea(
         child: Scaffold(
+          drawer: NavDrawer(),
           bottomNavigationBar: CurvedNavigationBar(
             backgroundColor: Colors.blueAccent,
             // buttonBackgroundColor: Colors.greenAccent,
@@ -70,8 +72,7 @@ class _HomeState extends State<Home> {
                 });
             },
           ),
-          body: SingleChildScrollView(
-            child: Container(
+          body:Container(
                 height: MediaQuery.of(context).size.height,
                 color: Colors.blueAccent,
                 child: Center(
@@ -82,7 +83,6 @@ class _HomeState extends State<Home> {
                   ),
                 ),
             ),
-          )
         ),
     );
     }
