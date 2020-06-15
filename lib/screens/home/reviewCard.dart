@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon_ccr/models/facility.dart';
-import 'package:hackathon_ccr/models/info.dart';
 import 'package:hackathon_ccr/services/databaseFacility.dart';
 import 'package:hackathon_ccr/shared/constants.dart';
-import 'package:provider/provider.dart';
+import 'package:hackathon_ccr/shared/loading.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class ReviewCard extends StatefulWidget {
@@ -31,10 +29,10 @@ class _ReviewCardState extends State<ReviewCard> {
   return SafeArea(
       child: new StreamBuilder(
         // TODO: Get the document ID from the List Iterating by index of it instead of static
-        stream: facilityCollection.document('8686719').snapshots(),
+        stream: facilityCollection.document('909353').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return new Text("Loading");
+            return Loading();
           }
 
           var facilityData = snapshot.data; 
@@ -216,7 +214,7 @@ class _ReviewCardState extends State<ReviewCard> {
                               backgroundImage: NetworkImage('https://i.pinimg.com/564x/bc/f2/e0/bcf2e09c51f24a9cbf4bce267e4070ee.jpg'),
                             ),
                             title: SmoothStarRating(
-                              rating: facilityData['reviewData'][0]['reviewerRate']*1.0,
+                              rating: facilityData['reviewData'][2]['reviewerRate']*1.0,
                               isReadOnly: true,
                               size: 20,
                               filledIconData: Icons.star,
@@ -229,7 +227,7 @@ class _ReviewCardState extends State<ReviewCard> {
                               borderColor: Colors.blue,
                             ),
                             subtitle: Text(
-                                '${facilityData['reviewData'][0]['reviewerDescription']}',
+                                '${facilityData['reviewData'][2]['reviewerDescription']}',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey[700],
@@ -271,10 +269,28 @@ class _ReviewCardState extends State<ReviewCard> {
                           child: ListTile(
                             leading: CircleAvatar(
                               radius: 25,
-                              backgroundColor: Colors.green[700],
+                              backgroundImage: NetworkImage('https://i.pinimg.com/564x/6c/97/46/6c9746266259e31ba3b7131caee7164b.jpg'),
                             ),
-                            title: Text("Blá blá blá"),
-                            subtitle: Text('blá blá blá'),
+                            title: SmoothStarRating(
+                              rating: facilityData['reviewData'][0]['reviewerRate']*1.0,
+                              isReadOnly: true,
+                              size: 20,
+                              filledIconData: Icons.star,
+                              halfFilledIconData: Icons.star_half,
+                              defaultIconData: Icons.star_border,
+                              starCount: 5,
+                              allowHalfRating: true,
+                              spacing: 2.0,
+                              color: Colors.blue,
+                              borderColor: Colors.blue,
+                            ),
+                            subtitle: Text(
+                                '${facilityData['reviewData'][0]['reviewerDescription']}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey[700],
+                                ),
+                              ),
                           ),
                         ),
                       ],
@@ -303,10 +319,9 @@ class _ReviewCardState extends State<ReviewCard> {
                               pageSnapping: true,
                               children: <Widget>[
                                 banheiro, patio, diesel, seguranca, tratamento                                
-                              ]
-                            )
-                          )
-
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -314,7 +329,7 @@ class _ReviewCardState extends State<ReviewCard> {
                   SizedBox(height: 10),
                   Center(
                     child: RaisedButton(
-                      color: Colors.red[700],
+                      color: Colors.redAccent,
                       child: Text(
                         'Enviar',
                         style: TextStyle(color: Colors.white),

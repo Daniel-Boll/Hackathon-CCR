@@ -64,6 +64,7 @@ class _RoutesPageState extends State<RoutesPage> {
   List<LatLng> polylineCoordinates = [];
   String googleAPIKey = "AIzaSyCQRBtJcnzbHPJNP-zZXqrzW3RG9oI679E";
 
+  final AuthService _auth = AuthService();
 
   @override
   void initState(){
@@ -83,6 +84,16 @@ class _RoutesPageState extends State<RoutesPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Center(
+                    child: SizedBox(
+                      height: 90.0,
+                      child: Image.asset(
+                        "assets/images/logo.png",
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
                   Text(
                     'Origem',
                     style: TextStyle(
@@ -120,7 +131,8 @@ class _RoutesPageState extends State<RoutesPage> {
                         'Calcular Rota',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: (){
+                      onPressed: () async {
+                        // await _auth.signOut();
                         if(_formKey.currentState.validate()){
                           print(_origin);
                           print(_destiny);
@@ -162,6 +174,12 @@ class _RoutesPageState extends State<RoutesPage> {
                           'reviewerName': 'Pedro Carlos',
                           'reviewerRate': 4,
                           'reviewerDescription': 'Ótimo estabelicimento blá blá blá',
+                          'reviewerSpecificRate': allThreeRate
+                        },{
+                          'uid' : 'DTON1tjpJqObEWXxmOfLQ8nKemm1',
+                          'reviewerName': 'Mateus Edival',
+                          'reviewerRate': 5,
+                          'reviewerDescription': 'Excelente estabelicimento, muito confortável blá blá blá',
                           'reviewerSpecificRate': allThreeRate
                         }
                         

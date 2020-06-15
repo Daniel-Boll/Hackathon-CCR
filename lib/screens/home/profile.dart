@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_ccr/models/info.dart';
 import 'package:hackathon_ccr/models/user.dart';
+import 'package:hackathon_ccr/screens/home/modal.dart';
 import 'package:hackathon_ccr/services/auth.dart';
 import 'package:hackathon_ccr/services/database.dart';
 import 'package:hackathon_ccr/shared/loading.dart';
@@ -15,6 +16,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final user = Provider.of<User>(context);
+    bool _password = false;
 
     return StreamBuilder<UserData>(
       stream: DatabaseService(uid: user.uid).userData,
@@ -121,14 +123,26 @@ class ProfilePage extends StatelessWidget {
                   endIndent: 285,
                 ),
                 SizedBox(height: 10),
-                Text(
-                    userData.password,
-                    style: TextStyle(
+                Row(
+                  children: <Widget>[
+                    Text(
+                        _password ? (userData.password) : '*'*(userData.password).length,
+                        style: TextStyle(
+                          color: Colors.white,
+                          letterSpacing: 2,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        )
+                    ),
+                    IconButton(
+                      icon: _password ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                      tooltip: _password ? 'Ocultar a senha' : 'Mostrar a senha',
                       color: Colors.white,
-                      letterSpacing: 2,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    )
+                      onPressed: (){
+                        _password = !_password;
+                      },
+                    ),
+                  ],
                 ),
                 SizedBox(height: 30),
                 RaisedButton.icon(
